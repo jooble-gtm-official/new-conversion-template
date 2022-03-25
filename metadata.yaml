@@ -1,5 +1,9 @@
 homepage: "https://jooble.org"
 documentation: "https://github.com/jooble-gtm-official/conversion-template#readme"
 versions:
+  # Latest version
+  - sha: 94d7038ed146d4900ad77b1dbca5d1c47a33a7d7
+    changeNotes: Use gtmOnFailure method in case conversionUrl is empty.
+  # Older versions
   - sha: ecd45be902cb8719973cb16202030c4ae6ee0e1d
     changeNotes: Initial release.
