@@ -75,7 +75,7 @@ const jbl_getWithExpiry = (key) => {
 
 const conversionUrl = jbl_getWithExpiry("jbl_conv_url");
 if (!conversionUrl) {
-  data.gtmOnSuccess();
+  data.gtmOnFailure();
   return;
 }
 
