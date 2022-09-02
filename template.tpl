@@ -1,4 +1,4 @@
-﻿// Copyright 2021 Jooble CIS LLC
+// Copyright 2021 Jooble CIS LLC
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,6 +53,7 @@ const sendPixel = require('sendPixel');
 const localStorage = require('localStorage');
 const getTimestampMillis = require('getTimestampMillis');
 const JSON = require('JSON');
+const convKey = 'jbl_conv_url';
 
 const jbl_getWithExpiry = (key) => {
   const itemStr = localStorage.getItem(key);
@@ -73,13 +74,16 @@ const jbl_getWithExpiry = (key) => {
   return item.value;
 };
 
-const conversionUrl = jbl_getWithExpiry("jbl_conv_url");
+const conversionUrl = jbl_getWithExpiry(convKey);
 if (!conversionUrl) {
   data.gtmOnFailure();
   return;
 }
 
 sendPixel(conversionUrl);
+
+// remove from localStorage to avoid duplication in conversions in second apply
+localStorage.removeItem(convKey);
 
 // Зробіть виклик data.gtmOnSuccess після виконання тегу.
 data.gtmOnSuccess();
@@ -127,7 +131,7 @@ ___WEB_PERMISSIONS___
                   },
                   {
                     "type": 8,
-                    "boolean": false
+                    "boolean": true
                   }
                 ]
               }
@@ -188,6 +192,5 @@ scenarios: []
 
 ___NOTES___
 
-Created on 15.11.2021, 18:23:45
-
+Created on 9/2/2022, 1:09:26 PM
 
